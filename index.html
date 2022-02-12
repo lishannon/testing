@@ -1,27 +1,194 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> Arrange the character to create the sentence</title>
-    <link rel="stylesheet" href="arr.css">
-    <script
-        src="https://kit.fontawesome.com/3da1a747b2.js"
-        crossorigin="anonymous"
-    ></script>
-</head>
+
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="images/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="images/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="images/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="images/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="images/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="images/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="images/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="images/favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <title>Rearrange the Sentence Ex</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <!-- <link href="css/sidebar.css" rel="stylesheet"> -->
+  <link href="arr.css" rel="stylesheet">
+  <!-- <script src="js/sidebar.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.2/dist/hanzi-writer.min.js"></script>
+
+  <script>
+    (function (d) {
+      var config = {
+        kitId: "jdh3skg",
+        scriptTimeout: 3000,
+        async: true,
+      },
+        h = d.documentElement,
+        t = setTimeout(function () {
+          h.className =
+            h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive";
+        }, config.scriptTimeout),
+        tk = d.createElement("script"),
+        f = false,
+        s = d.getElementsByTagName("script")[0],
+        a;
+      h.className += " wf-loading";
+      tk.src = "https://use.typekit.net/" + config.kitId + ".js";
+      tk.async = true;
+      tk.onload = tk.onreadystatechange = function () {
+        a = this.readyState;
+        if (f || (a && a != "complete" && a != "loaded")) return;
+        f = true;
+        clearTimeout(t);
+        try {
+          Typekit.load(config);
+        } catch (e) { }
+      };
+      s.parentNode.insertBefore(tk, s);
+    })(document);
+  </script>
+
+  <style>
+    .row-width {
+      width: 100%;
+    }
+
+    .instruction-size {
+      font-size: 1rem;
+    }
+
+    .char-font-size {
+      font-size: 1rem;
+    }
+
+    .index-font-size {
+      font-size: 0.75rem;
+    }
+
+    .drop_box {
+      height: 40px;
+    }
+
+    .col-lg-1{
+      min-width: 125px !important;
+    }
+
+    .answers, .choices {
+      padding-right: 0px !important;
+      padding-left: 0px !important;
+    }
+
+    #character-box .choices{
+      margin: 10px;
+    }
+
+
+    @media screen and (min-width: 768px) {
+      .index-font-size {
+        font-size: 1rem;
+      }
+
+    }
+
+    @media screen and (min-width: 1400px) {
+      .row-width {
+        width: 90%;
+      }
+
+      .instruction-size {
+        font-size: 1.5rem;
+      }
+
+      .char-font-size {
+        font-size: 1.2rem;
+      }
+
+      .container-fluid{
+        padding: 3% 3%;
+      }
+    }
+  </style>
+
+<script async src='/cdn-cgi/bm/cv/669835187/api.js'></script></head>
 
 <body>
-    <h1>Exercise 1</h1>
-    <p>Move around the set of characters to complete the sentence</p>
-    <ul class="draggable-list" id="draggable-list"></ul>
-    <button class="check-btn" id="check">
-      Check Order
-    </button>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="jquery.ui.touch-punch.min.js"></script>
-    <script src="arranging.js"></script>
-</body>
+
+    <!-- Page Content-->
+    <div id="page-content-wrapper">
+      <!-- Container Fluid -->
+      <div class="container-fluid">
+        <div id="index">
+          <h2 class="fw-bold mb-0 text-center">Rearrange the Sentence: Exercise 1 </h2>
+          
+          <br>
+          <h5 class="text-center"> <b>Goal:</b> Rearrange the characters to create the a Chinese sentnece. First, read the English sentence. Then, drag and drop the characters to the boxes to form a sentence.
+          </h5>
+          <br>
+          <h5 class = "text-center text-primary"> English sentence: I plan to finish reading ten books in a year. </h5>
+
+          <br>
+          
+          <div class="mb-0 mb-lg-3" id="content-container">
+            <div class="row row-width mx-auto justify-content-center" id="content"></div>
+          </div>
+          
+          <div class="mb-0 mb-lg-3" id="content-container">
+            <div class="row row-width mx-auto justify-content-center border border-dark border-3 " id="character-box"></div>
+          </div>
+
+          <div id ="answer" class="text-center">
+
+          </div>
+          <!-- <p class="checkmark" style="color:blue; font-size:1.5em; height: 22px !important">&#10004;</p>
+          <p class="xmark" style="color:red; font-size:1.5em; height: 22px !important">&#10008; -->
+<!-- me-1 mb-lg-3 drop_box center -->
+          <br>
+          <div class="row text-center mt-3 py-3 border-top border-secondary border-3">
+  
+            <div class="col">
+              <h2 id="score">Score: N/A</h2>
+            </div>
+            <div class="col">
+              <h2 class="mb-3 d-inline-block mx-auto"><span id="minutes">00</span>:<span id="seconds">00</span>
+              </h2>
+            </div>
+            <div class="col">
+              <button type="button" class="btn btn-primary btn-lg" id="check">Submit</button>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="arranging.js"></script>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script type="text/javascript">(function(){window['__CF$cv$params']={r:'6dc2b1ac396f18a1',m:'e6at6RkfcyyZuCimySfNOKdeZwM1GIUcpCBcejnmDPQ-1644636161-0-AcxBSRwum1RfeHw09Y8Ze9GlIybmX+3TGBVujbeQl4RkcJ8gcvuUp7QR9lT5f/ZfahHaCzR2/J5pVSW8H5HWM/EKKP7PawBUbKwmXyKypc8BAAud4Q8s1M/xPpxCwLzccmcYALjfgqeczpqUcYZQgNTfiZRLcjJkmhsgQfvzJBOrb9aE8GiGNdX8EssrgdGrxw==',s:[0x650e298057,0x8a9668abc9],}})();</script></body>
 
 </html>
