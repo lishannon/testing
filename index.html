@@ -1,195 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <base href="../" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF"
+      crossorigin="anonymous"
+    />
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="1000chars.css" rel="stylesheet" />
+    <script src="hanzi-writer/hanzi-writer.min.js"></script>
+    <script src="pinyin-converter/pinyin-converter.js"></script>
+    <script src="dictionaries/characters.js"></script>
+    <script src="dictionaries/charsByAlphabetByPinyin.js"></script>
+    <script src="dictionaries/wordEx.js"></script>
+    <script src="dictionaries/sentEx.js"></script>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="#" />
+    <script>
+      (function (d) {
+        var config = {
+            kitId: "jdh3skg",
+            scriptTimeout: 3000,
+            async: true,
+          },
+          h = d.documentElement,
+          t = setTimeout(function () {
+            h.className =
+              h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive";
+          }, config.scriptTimeout),
+          tk = d.createElement("script"),
+          f = false,
+          s = d.getElementsByTagName("script")[0],
+          a;
+        h.className += " wf-loading";
+        tk.src = "https://use.typekit.net/" + config.kitId + ".js";
+        tk.async = true;
+        tk.onload = tk.onreadystatechange = function () {
+          a = this.readyState;
+          if (f || (a && a != "complete" && a != "loaded")) return;
+          f = true;
+          clearTimeout(t);
+          try {
+            Typekit.load(config);
+          } catch (e) {}
+        };
+        s.parentNode.insertBefore(tk, s);
+      })(document);
+    </script>
 
-  <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="images/favicon/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="images/favicon/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="images/favicon/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="images/favicon/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="images/favicon/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="images/favicon/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="images/favicon/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
-  <link rel="manifest" href="images/favicon/manifest.json">
-  <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-  <meta name="theme-color" content="#ffffff">
+    <script src="../touchPunch/touch-punch.js"></script>
+    <title>1000 Chars</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link navbar-active-theme" href="index.html"
+                >ALPHABET INDEX</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="lessons.html">LESSON INDEX</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="radicals.html">RADICAL INDEX</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <button type="button" class="btn btn-primary btn-lg btn-convert">
+        Traditional
+      </button>
+      <div class="heading">
+        <h1>1000 Most Frequently Used Characters</h1>
+      </div>
+    </div>
 
-  <title>Rearrange the Sentence Ex</title>
+    <div class="alphaindex">
+      <div class="container container-head">
+        <div class="back" onclick="location.href='index.html'">
+          <h1 class="backSymbol">&#x276E;</h1>
+        </div>
+        <div class="box currSection" id="W">
+          <div>W</div>
+        </div>
+      </div>
+      <div class="container charContent mb-5"></div>
+      <div class="container exercises text-center mt-5">
+        <button
+          type="button"
+          class="btn-exercises btn btn-primary btn-lg"
+          onclick="location.href='exercises/wordCompoundEx/W-WordEx-Home.html'"
+        >
+          Word Exercises
+        </button>
+        <button type="button" class="btn-exercises btn btn-primary btn-lg"
+        onclick="location.href='exercises/rearrangeWordEx/exerciseW.html'">
+          Sentences Exercises
+        </button>
+      </div>
+    </div>
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-  <!-- <link href="css/sidebar.css" rel="stylesheet"> -->
-  <link href="arr.css" rel="stylesheet">
-  <!-- <script src="js/sidebar.js"></script> -->
-  <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.2/dist/hanzi-writer.min.js"></script>
+    <div class="modal">
+      <div class="modal-content">
+        <div class="close-btn">
+          <span class="close">&#10006;</span>
+        </div>
 
-  <script>
-    (function (d) {
-      var config = {
-        kitId: "jdh3skg",
-        scriptTimeout: 3000,
-        async: true,
-      },
-        h = d.documentElement,
-        t = setTimeout(function () {
-          h.className =
-            h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive";
-        }, config.scriptTimeout),
-        tk = d.createElement("script"),
-        f = false,
-        s = d.getElementsByTagName("script")[0],
-        a;
-      h.className += " wf-loading";
-      tk.src = "https://use.typekit.net/" + config.kitId + ".js";
-      tk.async = true;
-      tk.onload = tk.onreadystatechange = function () {
-        a = this.readyState;
-        if (f || (a && a != "complete" && a != "loaded")) return;
-        f = true;
-        clearTimeout(t);
-        try {
-          Typekit.load(config);
-        } catch (e) { }
-      };
-      s.parentNode.insertBefore(tk, s);
-    })(document);
-  </script>
+        <div class="container modal-inner-content">
+          <div id="character-target-div"></div>
+          <div>
+            <div class="info-buttons">
+              <div>
+                <button
+                  type="button"
+                  class="btn btn-primary btn-lg"
+                  data-btn="charPinyin"
+                >
+                  Pinyin
+                </button>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  class="btn btn-primary btn-lg"
+                  data-btn="definition"
+                >
+                  Definition
+                </button>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  class="btn btn-primary btn-lg"
+                  data-btn="radical"
+                >
+                  Radical
+                </button>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  class="btn btn-primary btn-lg animate"
+                  data-btn="strokes"
+                >
+                  Strokes
+                </button>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  class="btn btn-primary btn-lg"
+                  data-btn="component"
+                >
+                  Other Comp
+                </button>
+              </div>
 
-  <style>
-    .row-width {
-      width: 100%;
-    }
-
-    .instruction-size {
-      font-size: 1rem;
-    }
-
-    .char-font-size {
-      font-size: 1rem;
-    }
-
-    .index-font-size {
-      font-size: 0.75rem;
-    }
-
-    .drop_box {
-      height: 40px;
-    }
-
-    .col-lg-1{
-      min-width: 125px !important;
-    }
-
-    .answers, .choices {
-      padding-right: 0px !important;
-      padding-left: 0px !important;
-    }
-
-    #character-box .choices{
-      margin: 10px;
-    }
-
-
-    @media screen and (min-width: 768px) {
-      .index-font-size {
-        font-size: 1rem;
-      }
-
-    }
-
-    @media screen and (min-width: 1400px) {
-      .row-width {
-        width: 90%;
-      }
-
-      .instruction-size {
-        font-size: 1.5rem;
-      }
-
-      .char-font-size {
-        font-size: 1.2rem;
-      }
-
-      .container-fluid{
-        padding: 3% 3%;
-      }
-    }
-  </style>
-
-<script async src='/cdn-cgi/bm/cv/669835187/api.js'></script></head>
-
-<body>
-
-    <!-- Page Content-->
-    <div id="page-content-wrapper">
-      <!-- Container Fluid -->
-      <div class="container-fluid">
-        <div id="index">
-          <h2 class="fw-bold mb-0 text-center">Rearrange the Sentence: Exercise 1 </h2>
-          
-          <br>
-          <h5 class="text-center"> <b>Goal:</b> Rearrange the characters to create the a Chinese sentnece. First, read the English sentence. Then, drag and drop the characters to the boxes to form a sentence.
-          </h5>
-          <br>
-          <h5 class = "text-center text-primary sentInfo"> English sentence: I plan to finish reading ten books in a year. </h5>
-
-          <br>
-          
-          <div class="mb-0 mb-lg-3" id="content-container">
-            <div class="row row-width mx-auto justify-content-center" id="content"></div>
-          </div>
-          
-          <div class="mb-0 mb-lg-3" id="content-container">
-            <div class="row row-width mx-auto justify-content-center border border-dark border-3 " id="character-box"></div>
-          </div>
-
-          <div id ="answer" class="text-center">
-
-          </div>
-          <!-- <p class="checkmark" style="color:blue; font-size:1.5em; height: 22px !important">&#10004;</p>
-          <p class="xmark" style="color:red; font-size:1.5em; height: 22px !important">&#10008; -->
-<!-- me-1 mb-lg-3 drop_box center -->
-          <br>
-          <div class="row text-center mt-3 py-3 border-top border-secondary border-3">
-  
-            <div class="col">
-              <h2 id="score">Score: N/A</h2>
+              <div>
+                <button
+                  type="button"
+                  class="btn btn-primary btn-lg ety"
+                  data-btn="etymology"
+                >
+                  Etymology
+                </button>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  class="btn btn-primary btn-lg wordEx"
+                  data-btn="wordEx"
+                >
+                  Word Ex
+                </button>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  class="btn btn-primary btn-lg sentEx"
+                  data-btn="sentEx"
+                >
+                  Sentence Ex
+                </button>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  class="btn btn-primary btn-lg"
+                  id="modal-convert"
+                >
+                  SimpORTrad
+                </button>
+              </div>
             </div>
-            <div class="col">
-              <h2 class="mb-3 d-inline-block mx-auto"><span id="minutes">00</span>:<span id="seconds">00</span>
-              </h2>
-            </div>
-            <div class="col">
-              <button type="button" class="btn btn-primary btn-lg" id="check">Submit</button>
+            <div class="information">
+              <p class="chinese-content" id="charPinyin">charPinyin</p>
+              <p class="chinese-content" id="definition">definition</p>
+              <p class="chinese-content" id="radical">radical</p>
+              <p class="chinese-content" id="strokes">strokes</p>
+              <p class="chinese-content" id="component">component</p>
+              <div class="chinese-content" id="etymology">
+                <ul id="etymologyText">
+                  etymology
+                </ul>
+                <img id="image" src="" alt="" />
+              </div>
+              <div class="chinese-content" id="wordEx">
+                <div id="chineseWordEx"></div>
+                <div style="margin-top: 10px">
+                  <span class="prevEx wordEx">&#x276E; Prev</span>
+                  <span class="nextEx wordEx"> Next &#x276F;</span>
+                </div>
+              </div>
+              <div class="chinese-content" id="sentEx">
+                <div class="instructions">
+                  Click on the sentence to see the pinyin.
+                </div>
+                <div id="chineseSentEx"></div>
+                <div style="margin-top: 10px">
+                  <span class="prevEx sentEx">&#x276E; Prev</span>
+                  <span class="nextEx sentEx"> Next &#x276F;</span>
+                </div>
+              </div>
             </div>
           </div>
-
-
         </div>
       </div>
     </div>
-  </div>
-
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <script src="arranging.js"></script>
-  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-  <script src="touch-punch.js"</script>  
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<script type="text/javascript">(function(){window['__CF$cv$params']={r:'6dc2b1ac396f18a1',m:'e6at6RkfcyyZuCimySfNOKdeZwM1GIUcpCBcejnmDPQ-1644636161-0-AcxBSRwum1RfeHw09Y8Ze9GlIybmX+3TGBVujbeQl4RkcJ8gcvuUp7QR9lT5f/ZfahHaCzR2/J5pVSW8H5HWM/EKKP7PawBUbKwmXyKypc8BAAud4Q8s1M/xPpxCwLzccmcYALjfgqeczpqUcYZQgNTfiZRLcjJkmhsgQfvzJBOrb9aE8GiGNdX8EssrgdGrxw==',s:[0x650e298057,0x8a9668abc9],}})();</script></body>
-
+    <script>
+      var currAlpha = $(".currSection").attr("id");
+      var currAlphaDict = alphaDict[currAlpha];
+    </script>
+    <script src="displayChars.js"></script>
+    <script src="simpTradConversion.js"></script>
+    <script src="displayModal.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
